@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d0d6566b8964e9eaa2174bb4b1f9ab7" Name="Diagram1" ZoomLevel="133" >
+        <EntityTypeShape EntityType="LicTom.Usuario" Width="1.5" PointX="0.5" PointY="5.125" />
+        <EntityTypeShape EntityType="LicTom.Trabajador" Width="1.5" PointX="2.5" PointY="5.75" />
+        <EntityTypeShape EntityType="LicTom.Compra" Width="1.5" PointX="4.625" PointY="5.875" />
+        <EntityTypeShape EntityType="LicTom.Proveedor" Width="1.5" PointX="5.625" PointY="9.125" />
+        <EntityTypeShape EntityType="LicTom.DetalleCompra" Width="1.5" PointX="6.75" PointY="6" />
+        <EntityTypeShape EntityType="LicTom.Producto" Width="1.5" PointX="8.875" PointY="5.625" />
+        <EntityTypeShape EntityType="LicTom.Venta" Width="1.5" PointX="11.875" PointY="7.625" />
+        <EntityTypeShape EntityType="LicTom.DetalleVenta" Width="1.5" PointX="13.25" PointY="5" />
+        <EntityTypeShape EntityType="LicTom.Cliente" Width="1.5" PointX="8.375" PointY="9.25" />
+        <EntityTypeShape EntityType="LicTom.Categoria" Width="1.5" PointX="11.125" PointY="4.375" />
+        <AssociationConnector Association="LicTom.UsuarioTrabajador" />
+        <AssociationConnector Association="LicTom.TrabajadorCompra" />
+        <AssociationConnector Association="LicTom.CompraDetalleCompra" />
+        <AssociationConnector Association="LicTom.ProveedorCompra" />
+        <AssociationConnector Association="LicTom.ProductoDetalleCompra" />
+        <AssociationConnector Association="LicTom.ProductoDetalleVenta" />
+        <AssociationConnector Association="LicTom.CategoriaProducto" />
+        <AssociationConnector Association="LicTom.VentaDetalleVenta" />
+        <AssociationConnector Association="LicTom.ClienteVenta" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

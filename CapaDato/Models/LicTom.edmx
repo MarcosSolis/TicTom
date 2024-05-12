@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LicTom.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LicTomStoreContainer">
+    <EntitySet Name="Facultades" EntityType="LicTom.Store.Facultades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Carreras" EntityType="LicTom.Store.Carreras" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Estudiantes" EntityType="LicTom.Store.Estudiantes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OperadoraTelefonos" EntityType="LicTom.Store.OperadoraTelefonos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetalleEstudianteTelefonos" EntityType="LicTom.Store.DetalleEstudianteTelefonos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductoSet" EntityType="LicTom.Store.ProductoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VentaSet" EntityType="LicTom.Store.VentaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetalleVentaSet" EntityType="LicTom.Store.DetalleVentaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClienteSet" EntityType="LicTom.Store.ClienteSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CategoriaSet" EntityType="LicTom.Store.CategoriaSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UsuarioTrabajador" Association="LicTom.Store.UsuarioTrabajador">
+      <End Role="Usuario" EntitySet="Facultades" />
+      <End Role="Trabajador" EntitySet="Carreras" />
+    </AssociationSet>
+    <AssociationSet Name="TrabajadorCompra" Association="LicTom.Store.TrabajadorCompra">
+      <End Role="Trabajador" EntitySet="Carreras" />
+      <End Role="Compra" EntitySet="Estudiantes" />
+    </AssociationSet>
+    <AssociationSet Name="CompraDetalleCompra" Association="LicTom.Store.CompraDetalleCompra">
+      <End Role="Compra" EntitySet="Estudiantes" />
+      <End Role="DetalleCompra" EntitySet="DetalleEstudianteTelefonos" />
+    </AssociationSet>
+    <AssociationSet Name="ProveedorCompra" Association="LicTom.Store.ProveedorCompra">
+      <End Role="Proveedor" EntitySet="OperadoraTelefonos" />
+      <End Role="Compra" EntitySet="Estudiantes" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoDetalleCompra" Association="LicTom.Store.ProductoDetalleCompra">
+      <End Role="Producto" EntitySet="ProductoSet" />
+      <End Role="DetalleCompra" EntitySet="DetalleEstudianteTelefonos" />
+    </AssociationSet>
+    <AssociationSet Name="ProductoDetalleVenta" Association="LicTom.Store.ProductoDetalleVenta">
+      <End Role="Producto" EntitySet="ProductoSet" />
+      <End Role="DetalleVenta" EntitySet="DetalleVentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="CategoriaProducto" Association="LicTom.Store.CategoriaProducto">
+      <End Role="Categoria" EntitySet="CategoriaSet" />
+      <End Role="Producto" EntitySet="ProductoSet" />
+    </AssociationSet>
+    <AssociationSet Name="VentaDetalleVenta" Association="LicTom.Store.VentaDetalleVenta">
+      <End Role="Venta" EntitySet="VentaSet" />
+      <End Role="DetalleVenta" EntitySet="DetalleVentaSet" />
+    </AssociationSet>
+    <AssociationSet Name="ClienteVenta" Association="LicTom.Store.ClienteVenta">
+      <End Role="Cliente" EntitySet="ClienteSet" />
+      <End Role="Venta" EntitySet="VentaSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Facultades">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contraseña" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Trabajador_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carreras">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estudiantes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fecha" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TrabajadorId" Type="int" Nullable="false" />
+    <Property Name="ProveedorId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OperadoraTelefonos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompraId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleEstudianteTelefonos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TipoFinanza" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompraId" Type="int" Nullable="false" />
+    <Property Name="ProductoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Precio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Exixtencias" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nivel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CategoriaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VentaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fecha" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClienteId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleVentaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cantidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Precio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProductoId" Type="int" Nullable="false" />
+    <Property Name="VentaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClienteSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CategoriaSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UsuarioTrabajador">
+    <End Role="Usuario" Type="LicTom.Store.Facultades" Multiplicity="*" />
+    <End Role="Trabajador" Type="LicTom.Store.Carreras" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Trabajador_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrabajadorCompra">
+    <End Role="Trabajador" Type="LicTom.Store.Carreras" Multiplicity="1" />
+    <End Role="Compra" Type="LicTom.Store.Estudiantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trabajador">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="TrabajadorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompraDetalleCompra">
+    <End Role="Compra" Type="LicTom.Store.Estudiantes" Multiplicity="1" />
+    <End Role="DetalleCompra" Type="LicTom.Store.DetalleEstudianteTelefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Compra">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleCompra">
+        <PropertyRef Name="CompraId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProveedorCompra">
+    <End Role="Proveedor" Type="LicTom.Store.OperadoraTelefonos" Multiplicity="1" />
+    <End Role="Compra" Type="LicTom.Store.Estudiantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proveedor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Compra">
+        <PropertyRef Name="ProveedorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoDetalleCompra">
+    <End Role="Producto" Type="LicTom.Store.ProductoSet" Multiplicity="1" />
+    <End Role="DetalleCompra" Type="LicTom.Store.DetalleEstudianteTelefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleCompra">
+        <PropertyRef Name="ProductoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductoDetalleVenta">
+    <End Role="Producto" Type="LicTom.Store.ProductoSet" Multiplicity="1" />
+    <End Role="DetalleVenta" Type="LicTom.Store.DetalleVentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="ProductoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoriaProducto">
+    <End Role="Categoria" Type="LicTom.Store.CategoriaSet" Multiplicity="1" />
+    <End Role="Producto" Type="LicTom.Store.ProductoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="CategoriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VentaDetalleVenta">
+    <End Role="Venta" Type="LicTom.Store.VentaSet" Multiplicity="1" />
+    <End Role="DetalleVenta" Type="LicTom.Store.DetalleVentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Venta">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleVenta">
+        <PropertyRef Name="VentaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClienteVenta">
+    <End Role="Cliente" Type="LicTom.Store.ClienteSet" Multiplicity="1" />
+    <End Role="Venta" Type="LicTom.Store.VentaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="ClienteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LicTom" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="LicTomContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Facultades" EntityType="LicTom.Usuario" />
+          <EntitySet Name="Carreras" EntityType="LicTom.Trabajador" />
+          <EntitySet Name="Estudiantes" EntityType="LicTom.Compra" />
+          <EntitySet Name="OperadoraTelefonos" EntityType="LicTom.Proveedor" />
+          <EntitySet Name="DetalleEstudianteTelefonos" EntityType="LicTom.DetalleCompra" />
+          <EntitySet Name="ProductoSet" EntityType="LicTom.Producto" />
+          <EntitySet Name="VentaSet" EntityType="LicTom.Venta" />
+          <EntitySet Name="DetalleVentaSet" EntityType="LicTom.DetalleVenta" />
+          <EntitySet Name="ClienteSet" EntityType="LicTom.Cliente" />
+          <EntitySet Name="CategoriaSet" EntityType="LicTom.Categoria" />
+          <AssociationSet Name="UsuarioTrabajador" Association="LicTom.UsuarioTrabajador">
+            <End Role="Usuario" EntitySet="Facultades" />
+            <End Role="Trabajador" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="TrabajadorCompra" Association="LicTom.TrabajadorCompra">
+            <End Role="Trabajador" EntitySet="Carreras" />
+            <End Role="Compra" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="CompraDetalleCompra" Association="LicTom.CompraDetalleCompra">
+            <End Role="Compra" EntitySet="Estudiantes" />
+            <End Role="DetalleCompra" EntitySet="DetalleEstudianteTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="ProveedorCompra" Association="LicTom.ProveedorCompra">
+            <End Role="Proveedor" EntitySet="OperadoraTelefonos" />
+            <End Role="Compra" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoDetalleCompra" Association="LicTom.ProductoDetalleCompra">
+            <End Role="Producto" EntitySet="ProductoSet" />
+            <End Role="DetalleCompra" EntitySet="DetalleEstudianteTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="ProductoDetalleVenta" Association="LicTom.ProductoDetalleVenta">
+            <End Role="Producto" EntitySet="ProductoSet" />
+            <End Role="DetalleVenta" EntitySet="DetalleVentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="CategoriaProducto" Association="LicTom.CategoriaProducto">
+            <End Role="Categoria" EntitySet="CategoriaSet" />
+            <End Role="Producto" EntitySet="ProductoSet" />
+          </AssociationSet>
+          <AssociationSet Name="VentaDetalleVenta" Association="LicTom.VentaDetalleVenta">
+            <End Role="Venta" EntitySet="VentaSet" />
+            <End Role="DetalleVenta" EntitySet="DetalleVentaSet" />
+          </AssociationSet>
+          <AssociationSet Name="ClienteVenta" Association="LicTom.ClienteVenta">
+            <End Role="Cliente" EntitySet="ClienteSet" />
+            <End Role="Venta" EntitySet="VentaSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="String" Nullable="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="LicTom.UsuarioTrabajador" FromRole="Usuario" ToRole="Trabajador" />
+        </EntityType>
+        <EntityType Name="Trabajador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" />
+          <Property Name="Rol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="LicTom.UsuarioTrabajador" FromRole="Trabajador" ToRole="Usuario" />
+          <NavigationProperty Name="Compra" Relationship="LicTom.TrabajadorCompra" FromRole="Trabajador" ToRole="Compra" />
+        </EntityType>
+        <EntityType Name="Compra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Fecha" Type="String" Nullable="false" />
+          <Property Name="TrabajadorId" Type="Int32" Nullable="false" />
+          <Property Name="ProveedorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Trabajador" Relationship="LicTom.TrabajadorCompra" FromRole="Compra" ToRole="Trabajador" />
+          <NavigationProperty Name="DetalleCompra" Relationship="LicTom.CompraDetalleCompra" FromRole="Compra" ToRole="DetalleCompra" />
+          <NavigationProperty Name="Proveedor" Relationship="LicTom.ProveedorCompra" FromRole="Compra" ToRole="Proveedor" />
+        </EntityType>
+        <EntityType Name="Proveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" />
+          <Property Name="CompraId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compra" Relationship="LicTom.ProveedorCompra" FromRole="Proveedor" ToRole="Compra" />
+        </EntityType>
+        <EntityType Name="DetalleCompra">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="String" Nullable="false" />
+          <Property Name="TipoFinanza" Type="String" Nullable="false" />
+          <Property Name="CompraId" Type="Int32" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compra" Relationship="LicTom.CompraDetalleCompra" FromRole="DetalleCompra" ToRole="Compra" />
+          <NavigationProperty Name="Producto" Relationship="LicTom.ProductoDetalleCompra" FromRole="DetalleCompra" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Precio" Type="String" Nullable="false" />
+          <Property Name="Exixtencias" Type="String" Nullable="false" />
+          <Property Name="Nivel" Type="String" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" />
+          <Property Name="CategoriaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleCompra" Relationship="LicTom.ProductoDetalleCompra" FromRole="Producto" ToRole="DetalleCompra" />
+          <NavigationProperty Name="DetalleVenta" Relationship="LicTom.ProductoDetalleVenta" FromRole="Producto" ToRole="DetalleVenta" />
+          <NavigationProperty Name="Categoria" Relationship="LicTom.CategoriaProducto" FromRole="Producto" ToRole="Categoria" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Fecha" Type="String" Nullable="false" />
+          <Property Name="ClienteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleVenta" Relationship="LicTom.VentaDetalleVenta" FromRole="Venta" ToRole="DetalleVenta" />
+          <NavigationProperty Name="Cliente" Relationship="LicTom.ClienteVenta" FromRole="Venta" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="DetalleVenta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cantidad" Type="String" Nullable="false" />
+          <Property Name="Precio" Type="String" Nullable="false" />
+          <Property Name="ProductoId" Type="Int32" Nullable="false" />
+          <Property Name="VentaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="LicTom.ProductoDetalleVenta" FromRole="DetalleVenta" ToRole="Producto" />
+          <NavigationProperty Name="Venta" Relationship="LicTom.VentaDetalleVenta" FromRole="DetalleVenta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" />
+          <NavigationProperty Name="Venta" Relationship="LicTom.ClienteVenta" FromRole="Cliente" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Producto" Relationship="LicTom.CategoriaProducto" FromRole="Categoria" ToRole="Producto" />
+        </EntityType>
+        <Association Name="UsuarioTrabajador">
+          <End Type="LicTom.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="LicTom.Trabajador" Role="Trabajador" Multiplicity="1" />
+        </Association>
+        <Association Name="TrabajadorCompra">
+          <End Type="LicTom.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="LicTom.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="TrabajadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CompraDetalleCompra">
+          <End Type="LicTom.Compra" Role="Compra" Multiplicity="1" />
+          <End Type="LicTom.DetalleCompra" Role="DetalleCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compra">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleCompra">
+              <PropertyRef Name="CompraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProveedorCompra">
+          <End Type="LicTom.Proveedor" Role="Proveedor" Multiplicity="1" />
+          <End Type="LicTom.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="ProveedorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductoDetalleCompra">
+          <End Type="LicTom.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="LicTom.DetalleCompra" Role="DetalleCompra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleCompra">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProductoDetalleVenta">
+          <End Type="LicTom.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="LicTom.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoriaProducto">
+          <End Type="LicTom.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="LicTom.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="CategoriaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="VentaDetalleVenta">
+          <End Type="LicTom.Venta" Role="Venta" Multiplicity="1" />
+          <End Type="LicTom.DetalleVenta" Role="DetalleVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleVenta">
+              <PropertyRef Name="VentaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ClienteVenta">
+          <End Type="LicTom.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="LicTom.Venta" Role="Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LicTomStoreContainer" CdmEntityContainer="LicTomContainer">
+    <EntitySetMapping Name="Facultades">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Usuario)">
+        <MappingFragment StoreEntitySet="Facultades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carreras">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Trabajador)">
+        <MappingFragment StoreEntitySet="Carreras">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estudiantes">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Compra)">
+        <MappingFragment StoreEntitySet="Estudiantes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="TrabajadorId" ColumnName="TrabajadorId" />
+          <ScalarProperty Name="ProveedorId" ColumnName="ProveedorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperadoraTelefonos">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Proveedor)">
+        <MappingFragment StoreEntitySet="OperadoraTelefonos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="CompraId" ColumnName="CompraId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleEstudianteTelefonos">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.DetalleCompra)">
+        <MappingFragment StoreEntitySet="DetalleEstudianteTelefonos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="TipoFinanza" ColumnName="TipoFinanza" />
+          <ScalarProperty Name="CompraId" ColumnName="CompraId" />
+          <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Producto)">
+        <MappingFragment StoreEntitySet="ProductoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="Exixtencias" ColumnName="Exixtencias" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VentaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Venta)">
+        <MappingFragment StoreEntitySet="VentaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleVentaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.DetalleVenta)">
+        <MappingFragment StoreEntitySet="DetalleVentaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+          <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+          <ScalarProperty Name="VentaId" ColumnName="VentaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClienteSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Cliente)">
+        <MappingFragment StoreEntitySet="ClienteSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CategoriaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(LicTom.Categoria)">
+        <MappingFragment StoreEntitySet="CategoriaSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UsuarioTrabajador" TypeName="LicTom.UsuarioTrabajador" StoreEntitySet="Facultades">
+      <EndProperty Name="Trabajador">
+        <ScalarProperty Name="Id" ColumnName="Trabajador_Id" />
+      </EndProperty>
+      <EndProperty Name="Usuario">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTom", "TicTom\TicTom.csproj", "{2B99A32E-4F81-4E5C-A0CD-6B0E701EA336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaDato", "CapaDato\CapaDato.csproj", "{2B73F6BF-DC3A-455C-96D8-E25987E45822}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CapaOperaciones", "CapaOperaciones\CapaOperaciones.csproj", "{73B02A4E-2C25-4330-B20A-79B4F79B3BC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B99A32E-4F81-4E5C-A0CD-6B0E701EA336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B99A32E-4F81-4E5C-A0CD-6B0E701EA336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B99A32E-4F81-4E5C-A0CD-6B0E701EA336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B99A32E-4F81-4E5C-A0CD-6B0E701EA336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B73F6BF-DC3A-455C-96D8-E25987E45822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B73F6BF-DC3A-455C-96D8-E25987E45822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B73F6BF-DC3A-455C-96D8-E25987E45822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B73F6BF-DC3A-455C-96D8-E25987E45822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B02A4E-2C25-4330-B20A-79B4F79B3BC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B02A4E-2C25-4330-B20A-79B4F79B3BC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B02A4E-2C25-4330-B20A-79B4F79B3BC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B02A4E-2C25-4330-B20A-79B4F79B3BC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F66C170C-C073-4931-A05D-47E168BD65F8}
+	EndGlobalSection
+EndGlobal
